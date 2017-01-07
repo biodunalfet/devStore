@@ -1,0 +1,28 @@
+doctype html
+html
+    head
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    body
+        nav.navbar.navbar-fixed-top.navbar-dark(style='background-color: #990800;')
+            a.navbar-brand(href='#', style='color:white') verspace dev store
+                span.label.label-default(style='margin-left: 5px') #{appName}
+        .container(style='padding: 70px 30px 30px 30px;')
+            #accordion.panel-group
+                //#data
+                each d, index in data
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                .row
+                                    .col-md-2 v#{d.version}
+                                    .col-md-3 #{d.dateUploaded}
+                                    .col-md-2 #{d.create}
+                                      a(href='#collapse#{index}', data-parent='#accordion', data-toggle='collapse') release notes
+                                    .col-md-5
+                                      a(href='#{d.url}', target='_blank') download
+                        .panel-collapse.collapse(id="collapse#{index}")
+                            .panel-body
+                                | !{d.releaseNotes}

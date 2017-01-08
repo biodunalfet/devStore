@@ -11,6 +11,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var records = require('./routes/records');
 
+require('dotenv').config({path: 'config'});
+
 var app = express();
 
 // view engine setup

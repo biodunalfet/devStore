@@ -4,7 +4,7 @@
 var superagent = require('superagent');
 var express = require('express');
 var router = express.Router();
-var URL_ROOT = 'http://localhost:3000';
+var URL_ROOT = 'https://arcane-fortress-56188.herokuapp.com';
 var api = require('../api/v1/api');
 var http_status = require('http-status');
 

@@ -42,8 +42,9 @@ module.exports = function () {
     router.get('/app', function (req, res) {
 
         App.find({}, appFieldsToShow, function (err, apps) {
-
+            
             if (err){
+                console.log("error is: " + err.toString());
                 handleError(err, res, status.BAD_REQUEST);
             }
             else {

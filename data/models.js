@@ -4,12 +4,16 @@ var recordSchema = require('./record');
 var dotenv = require('dotenv');
 
 module.exports = function () {
-    // var connection = mongoose.createConnection('mongodb://localhost:27017/devstore');
-    var connection = mongoose.createConnection('mongodb://' + process.env.DEVSTORE_DB_USER + ':' +
-        process.env.DEVSTORE_DB_PASS + '@ds157288.mlab.com:57288/devstore');
 
-    console.log(process.env.DEVSTORE_DB_USER);
-    console.log(process.env.DEVSTORE_DB_PASS);
+    var username = process.env.DEVSTORE_DB_USER;
+    var password = process.env.DEVSTORE_DB_PASS;
+
+    var connectionString = 'mongodb://' + username + ':' + password + '@ds157288.mlab.com:57288/devstore';
+    var connection = mongoose.createConnection(connectionString);
+
+    // console.log(process.env.DEVSTORE_DB_USER);
+    // console.log(process.env.DEVSTORE_DB_PASS);
+    console.log(connectionString);
 
     var Record = connection.model('Record',
         recordSchema,

@@ -21,6 +21,6 @@ devStore is a mini app store that shows a list of the uploaded app versions, dat
 3. run `node bin/www`.
 
 ## License
-The contents of this repository are covered under the [here](https://github.com/biodunalfet/devStore/blob/master/LICENSE)
+The contents of this repository are covered under the [MIT License](https://github.com/biodunalfet/devStore/blob/master/LICENSE)
 
 (in progress)

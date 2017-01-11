@@ -1,7 +1,7 @@
 # devStore
 
 ## Introduction
-devStore is a mini app store meant that shows a list of the uploaded app versions, date uploaded, release notes and the download urls.
+devStore is a mini app store that shows a list of the uploaded app versions, date uploaded, release notes and the download urls. It's meant to serve as a temporary store before you upload your apps to their respective official app stores (Google Play Store, App Store)
 
 ## Modules
 `api/v1` => All the API scripts

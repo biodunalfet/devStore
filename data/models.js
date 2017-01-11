@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var appSchema = require('./app');
 var recordSchema = require('./record');
-var config = require('../config');
 var dotenv = require('dotenv');
 
 module.exports = function () {

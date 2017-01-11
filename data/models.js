@@ -8,7 +8,8 @@ module.exports = function () {
     var connection = mongoose.createConnection('mongodb://' + process.env.DEVSTORE_DB_USER + ':' +
         process.env.DEVSTORE_DB_PASS + '@ds157288.mlab.com:57288/devstore');
 
-
+    console.log(process.env.DEVSTORE_DB_USER);
+    console.log(process.env.DEVSTORE_DB_PASS);
 
     var Record = connection.model('Record',
         recordSchema,

@@ -14,6 +14,11 @@ devStore is a mini app store that shows a list of the uploaded app versions, dat
 
 `views` => Jade views
 
+## To install/run
+
+1. Change the mongoose connection string in `data/models.js` to yours.
+2. run node bin/www
+
 ## License
 The contents of this repository are covered under the [here](https://github.com/biodunalfet/devStore/blob/master/LICENSE)
 

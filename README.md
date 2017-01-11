@@ -5,9 +5,13 @@ devStore is a mini app store meant that shows a list of the uploaded app version
 
 ## Modules
 `api/v1` => All the API scripts
+
 `bin/www` => Entry point of the app
+
 `data` => Schemas and MongoDB models
+
 `routes` => Manage all url routes
+
 `views` => Jade views
 
 ## License

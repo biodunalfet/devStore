@@ -21,7 +21,7 @@ var recordSchema = {
         date: { type: Date, default: Date.now }
         };
 
-var schema = new mongoose.Schema(recordSchema, { timestamps: { createdAt: true } });
+var schema = new mongoose.Schema(recordSchema, { timestamps: true });
 
 schema.virtual('releaseNotes').get(function () {
         return this.notes;
@@ -38,7 +38,7 @@ schema.set('toJSON', {transform: function(doc, result, options) {
                 releaseNotes: result.releaseNotes,
                 id: result.id,
                 dateUploaded: result.dateUploaded,
-                url: result.url,
+                url: result.url
         };
 }, virtuals: true });
 

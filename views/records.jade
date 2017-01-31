@@ -27,19 +27,58 @@ html
                             .panel-body
                                 | !{d.releaseNotes}
 
-        if count >= 10 && count <= 30
+        //if count >= 10 && count <= 30
+        //if count >= 10
+        //    nav(aria-label='...', style='text-align: center')
+        //        ul.pagination
+        //            li.page-item.disabled
+        //                a.page-link(href='#', tabindex='-1') Previous
+        //            -var base_url = url + '/records/' + appName
+        //            -var lower_limit = (parseInt((page - 1)/3) * 3) + 1
+        //            -var paginationNo = lower_limit - 1
+        //            -for (i = 1; i < 4; i++)
+        //
+        //                -if (count > (10 * paginationNo))
+        //                    -paginationNo = paginationNo + 1
+        //                    -var pageUrl = base_url + "?count=1&page=" + paginationNo
+        //                        -if (page != paginationNo)
+        //                            li.page-item
+        //                                a.page-link(href=pageUrl) #{paginationNo}
+        //                        -else
+        //                            li.page-item.active
+        //                                a.page-link(href='#')
+        //                                    | #{paginationNo}
+        //                                    span.sr-only (current)
+        //            - if (page > 3)
+        //                -var pageUrl = base_url + "?count=1&page=" + lower_limit
+        //                li.page-item
+        //                    a.page-link(href=pageUrl) Next
+        //            -else
+        //                li.page-item.disabled
+        //                    a.page-link(href='#', tabindex='-1') Next
+
+
+        -var recordsPerPage = limit
+        -var pageButtonCount = 3
+        -var base_url = url + "/records/" + appName
+        -var lower_limit = (parseInt((page - 1)/pageButtonCount) * pageButtonCount) + 1
+        -var upper_limit = lower_limit * pageButtonCount;
+        -var paginationNo = lower_limit - 1
+        if count >= recordsPerPage
             nav(aria-label='...', style='text-align: center')
                 ul.pagination
-                    li.page-item.disabled
-                        a.page-link(href='#', tabindex='-1') Previous
-                    -var base_url = url + '/records/' + appName
-                    -var lower_limit = (parseInt((page - 1)/3) * 3) + 1
-                    -var paginationNo = lower_limit - 1
-                    -for (i = 1; i < 4; i++)
+                    -if (lower_limit > 1)
+                        li.page-item
+                            -var pageUrl =  base_url + "?count=1&page=" + (lower_limit - pageButtonCount);
+                            a.page-link(href=pageUrl, tabindex='-1') Previous
+                    -else
+                        li.page-item.disabled
+                            a.page-link(href='#', tabindex='-1') Previous
+                    -for (i = 1; i < pageButtonCount + 1; i++)
 
-                        -if (count > (10 * paginationNo))
+                        -if (count > (recordsPerPage * paginationNo))
                             -paginationNo = paginationNo + 1
-                            -var pageUrl = base_url + "?count=1&page=" + paginationNo
+                            -var pageUrl =  base_url + "?count=1&page=" + paginationNo;
                                 -if (page != paginationNo)
                                     li.page-item
                                         a.page-link(href=pageUrl) #{paginationNo}
@@ -48,8 +87,8 @@ html
                                         a.page-link(href='#')
                                             | #{paginationNo}
                                             span.sr-only (current)
-                    - if (page > 3)
-                        -var pageUrl = base_url + "?count=1&page=" + lower_limit
+                    - if (count > (recordsPerPage * upper_limit))
+                        -var pageUrl = base_url + "?count=1&page=" + (upper_limit + 1)
                         li.page-item
                             a.page-link(href=pageUrl) Next
                     -else

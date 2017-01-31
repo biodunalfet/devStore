@@ -17,7 +17,7 @@ router.get('/:appName', function (req, res, next) {
     var page = req.query.page;
 
     if (limit == null){
-        limit = 10;
+        limit = 7;
     }
 
     if (page == null){
@@ -34,13 +34,14 @@ router.get('/:appName', function (req, res, next) {
             error.status = http_status.NOT_FOUND;
             error.stack = "Check the url";
             res.render('error', {message: "App not found", error: error});
-            //res.send();
+            //res.send();   1
         }
         else {
             //console.log(result);
             var resultObj = JSON.parse(result.text);
             res.render('records',
                 {
+                    limit : limit,
                     appName : appName,
                     data : resultObj.data,
                     count : resultObj.count,

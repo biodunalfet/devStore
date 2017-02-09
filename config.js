@@ -7,8 +7,8 @@
  * 1 = prod
  * @type {number}
  */
-var APP_MODE = 1;
-var MONGODB_MODE = 1;
+var APP_MODE = 0;
+var MONGODB_MODE = 0;
 
 module.exports = function () {
     return {

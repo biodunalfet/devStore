@@ -6,56 +6,32 @@ html
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
         script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
     body
-        nav.navbar.navbar-fixed-top.navbar-dark(style='background-color: #990800;')
-            a.navbar-brand(href='#', style='color:white') dev store
-                span.label.label-default(style='margin-left: 5px') #{appName}
-        .container(style='padding: 70px 30px 30px 30px;')
+        nav.navbar.navbar-dark(style='background-color: #990800; padding-right: 40px')
+            ul.nav.navbar-nav
+                a.navbar-brand(href='#', style='color:white') dev store
+                    span.label.label-default(style='margin-left: 5px;') #{appName}
+            ul.nav.navbar-nav.navbar-right(style='padding-left: 20px')
+                li.dropdown
+                    form.navbar-form.navbar-left(role='search')
+                        .form-group
+                            input.form-control(type='text', placeholder='Email')
+                        button.btn.btn-primary(type='submit', style='margin-left: 5px;') Subscribe
+        .container(style='padding: 40px 30px 30px 30px;')
             #accordion.panel-group
-                //#data
                 each d, index in data
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
                                 .row
-                                    .col-md-2 v#{d.version}
-                                    .col-md-3 #{d.dateUploaded}
-                                    .col-md-2 #{d.create}
+                                    .col-sm-2 v#{d.version}
+                                    .col-sm-3 #{d.dateUploaded}
+                                    .col-sm-2 #{d.create}
                                       a(href='#collapse#{index}', data-parent='#accordion', data-toggle='collapse') release notes
-                                    .col-md-5
+                                    .col-sm-5
                                       a(href='#{d.url}', target='_blank') download
                         .panel-collapse.collapse(id="collapse#{index}")
                             .panel-body
                                 | !{d.releaseNotes}
-
-        //if count >= 10 && count <= 30
-        //if count >= 10
-        //    nav(aria-label='...', style='text-align: center')
-        //        ul.pagination
-        //            li.page-item.disabled
-        //                a.page-link(href='#', tabindex='-1') Previous
-        //            -var base_url = url + '/records/' + appName
-        //            -var lower_limit = (parseInt((page - 1)/3) * 3) + 1
-        //            -var paginationNo = lower_limit - 1
-        //            -for (i = 1; i < 4; i++)
-        //
-        //                -if (count > (10 * paginationNo))
-        //                    -paginationNo = paginationNo + 1
-        //                    -var pageUrl = base_url + "?count=1&page=" + paginationNo
-        //                        -if (page != paginationNo)
-        //                            li.page-item
-        //                                a.page-link(href=pageUrl) #{paginationNo}
-        //                        -else
-        //                            li.page-item.active
-        //                                a.page-link(href='#')
-        //                                    | #{paginationNo}
-        //                                    span.sr-only (current)
-        //            - if (page > 3)
-        //                -var pageUrl = base_url + "?count=1&page=" + lower_limit
-        //                li.page-item
-        //                    a.page-link(href=pageUrl) Next
-        //            -else
-        //                li.page-item.disabled
-        //                    a.page-link(href='#', tabindex='-1') Next
 
 
         -var recordsPerPage = limit

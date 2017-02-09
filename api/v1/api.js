@@ -167,6 +167,15 @@ module.exports = function () {
 
         //todo add get app records (paginated) [limit, page]
     });
+
+    /**
+     * Add an email address to receive notifications when new updates are added
+     */
+    router.get('/record/:appName/subscribe', function (req, res) {
+        var appName = req.params.appName;
+        var subscriber = req.params.subscriber;
+
+    });
     return router;
 };
 

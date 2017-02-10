@@ -12,6 +12,8 @@ devStore is a mini app store that shows a list of the uploaded app versions, dat
 
 `data` => Schemas and MongoDB models
 
+`test` => Tests for endpoints
+
 `data/constants.js` => Contains important and frequently used constants e.g connection strings, urls etc
 
 `routes` => Manage all url routes
@@ -28,4 +30,7 @@ devStore is a mini app store that shows a list of the uploaded app versions, dat
 ## License
 The contents of this repository are covered under the [MIT License](https://github.com/biodunalfet/devStore/blob/master/LICENSE)
 
-(in progress)
+## Contribution
+Below is a rough list of features to implement. Feel free to suggest more
+1. Email subscription for updates
+2. Add authentication

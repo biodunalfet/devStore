@@ -18,7 +18,12 @@ module.exports = function () {
 
     var appFieldsToShow = {name: 1, description: 1};
 
-    // add a new app
+    /**
+     *  Add a new app
+     *  Takes
+     *  a) name of the app
+     *  b) description (Optional)
+     */
     router.post('/app', function (req, res) {
 
         //req.setTimeout(5000);
@@ -28,7 +33,7 @@ module.exports = function () {
         app.save(function (err) {
 
             if (err) {
-                return handleError(err, res, status.BAD_GATEWAY);
+                return handleError(err, res, status.BAD_REQUEST);
             }
             else {
                 return res.status(status.OK)
@@ -36,6 +41,24 @@ module.exports = function () {
             }
 
         });
+    });
+
+    // delete an app
+    router.delete('/app/:appName', function(req, res){
+
+        var appName = req.params.appName;
+
+        App.findOneAndRemove({'name' : appName})
+            .exec(function (err, app) {
+                if (err) {
+                    return res.status(status.BAD_REQUEST)
+                        .json({error: err.message});
+                }
+                else {
+                    return res.status(status.OK)
+                        .json({message : 'App deleted successfully'});
+                }
+            });
     });
 
     // get all apps
@@ -95,10 +118,10 @@ module.exports = function () {
     });
 
     // get total number of records
-
     router.get('/count/:appName', function (req, res) {
         var appName = req.params.appName;
-        Record.count({}, function (err, count) {
+        Record.count({'name': appName}, function (err, count) {
+            console.log(err);
             if (err) {
                 handleError(err, res, status.BAD_REQUEST);
             }
@@ -176,6 +199,42 @@ module.exports = function () {
         var subscriber = req.params.subscriber;
 
     });
+
+    // delete record given appName and version
+    router.delete('/record/:appName/:version', function (req, res) {
+        var appName = req.params.appName;
+        var version = req.params.version;
+
+        App.findOne({'name': appName}, function (err, app) {
+
+            //console.log(app);
+            if (err){
+                console.log(err);
+            }
+
+            if (!app) {
+                // var error = {};
+                // error.status = 404;
+                // error.stack = "";
+                return res.status(404).json({message: "App not found"});      // HTTP status 404: NotFound
+            }
+            else {
+                Record.findOneAndRemove({'appId': app._id, 'version' : version})
+                    .exec(function (err, record) {
+                        if (err) {
+                            return res.status(status.BAD_REQUEST)
+                                .json({error: err.message});
+                        }
+                        else {
+                            return res.status(status.OK)
+                                .json({message : 'Record deleted successfully'});
+                        }
+                    });
+            }
+        });
+
+    });
+
     return router;
 };
 

@@ -32,5 +32,6 @@ The contents of this repository are covered under the [MIT License](https://gith
 
 ## Contribution
 Below is a rough list of features to implement. Feel free to suggest more
+
 1. Email subscription for updates
 2. Add authentication
